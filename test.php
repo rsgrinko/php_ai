@@ -7,11 +7,13 @@
 
     $ob = new NeuroNetwork(getStoragePath(1));
     $res = $ob->run([1, 1]);
-    print_r($res);
+    echo '[Preset 1] Input data [1, 1], result: ' . $res[0] . PHP_EOL;
 
+    echo '[Mutate] Mutate weights...' . PHP_EOL;
     $ob->mutate();
+
     $res = $ob->run([1, 1]);
-    print_r($res);
+    echo '[Preset 2] Input data [1, 1], result: ' . $res[0] . PHP_EOL;
 
 
 
