@@ -33,4 +33,24 @@
             $this->value = $value;
             return $this;
         }
+
+        /**
+         * Метод активации
+         *
+         * @param float $value Значение
+         * @param float $weight Коэффициент синапса
+         */
+        public function activate(float $value, float $weight): self
+        {
+
+            // Умножение значения на коэфициент
+            $this->value = $value * $weight;
+
+
+            // Гиперболический тангенс
+            // https://otus.ru/journal/kak-sozdat-nejroset/
+            // Функция активации
+            //$this->value = tanh($value * $weight);
+            return $this;
+        }
     }

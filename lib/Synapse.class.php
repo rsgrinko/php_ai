@@ -3,7 +3,7 @@
      * Класс синапса
      * является связующим звеном между нейронами
      */
-    class Synaps
+    class Synapse
     {
         /** @var int Идентификатор синапса */
         private $id;
@@ -36,7 +36,11 @@
             if ($value !== null) {
                 $this->value = $value;
             } else {
-                $this->value = random_int(0, 100) / 100;
+                //Вариант генерации 1
+                //$this->value = random_int(0, 100000) / 100000;
+
+                // Вариант генерации 2
+                $this->value = mt_rand() / mt_getrandmax();
             }
             $this->id = $id;
         }
