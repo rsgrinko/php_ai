@@ -1,11 +1,15 @@
 <?php
+
+   /**
+    * Класс нейросети
+    */
     class NeuroNetwork
     {
 
         /** @var string $storageFile Файл-хранилище весов */
         private $storageFile;
 
-        /** @var array $arValues Файл-хранилище весов */
+        /** @var array $arValues Массив-хранилище весов */
         private $arValues;
 
         /**
@@ -34,6 +38,7 @@
             }
 
             // Слои нейросети
+            // TODO по хорошему заданием структуры сети нужно заниматься вне метода и в методе формировать слои по параметрам
             $this->layers = [
                 [new Neuron(1), new Neuron(2)],
                 [new Neuron(3), new Neuron(4), new Neuron(5), new Neuron(6)],
@@ -44,7 +49,7 @@
             $this->generateSynapses();
 
             // Получение сохраненных данных по весам
-            $this->getSynapsValue();
+            $this->getSynapsesValues();
         }
 
         /**
@@ -93,7 +98,7 @@
          *
          * @return array Сохраненный раннее массив весов
          */
-        private function getSynapsValue(): array
+        private function getSynapsesValues(): array
         {
             if (!file_exists($this->storageFile)) {
                 return [];
