@@ -15,5 +15,6 @@
     $res = $ob->run([1, 1]);
     echo '[Preset 2] Input data [1, 1], result: ' . $res[0] . PHP_EOL;
 
+    echo $ob->calculateTotalError(0.01);
 
 

@@ -186,4 +186,41 @@
         {
             $synapse->getOutNeuron()->activate($synapse->getInNeuron()->getValue(), $synapse->getValue());
         }
+
+
+        /**
+         * Расчет ошибки
+         *
+         * @param float $target Целевое значение
+         * @param float $current Текущее значение
+         * @return float Величина ошибки
+         */
+        private function calculateError(float $target, float $current): float
+        {
+            return (($target - $current) ** 2) / 2;
+        }
+
+        /**
+         * Расчет общей ошибки
+         *
+         * @param float $target Целевое значение (ПЕРЕДЕЛАТЬ)
+         * @return float Величина ошибки
+         */
+        public function calculateTotalError(float $target = 0.0): float
+        {
+            $totalError = 0.0;
+            $endLayer = count($this->layers) - 1;
+            foreach($this->layers as $keyLayer => $layer) {
+                if ($keyLayer === 0 || $keyLayer === $endLayer) {
+                    continue;
+                }
+                foreach($layer as $neuron) {
+                    /** @var Neuron $neuron */
+                    // TODO требуется определять целевое значение и передавать первым аргументом ниже
+                    $totalError += $this->calculateError($target, $neuron->getValue());
+                }
+            }
+
+            return $totalError;
+        }
     }
