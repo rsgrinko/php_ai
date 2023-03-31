@@ -90,6 +90,19 @@
         }
 
         /**
+         * Функция активации (сигмоида)
+         *
+         * @param float $value Значение
+         *
+         * @return float Результат
+         */
+        private function activate(float $value): float
+        {
+            return 1 / (1 + exp(-$value));
+        }
+
+
+        /**
          * Обработка
          *
          * @param array $inputs Входные данные
@@ -104,7 +117,7 @@
                 for ($j = 0; $j < $this->numInputs; $j++) {
                     $sum += $inputs[$j] * $this->hiddenWeights[$j][$i];
                 }
-                $hiddenOutputs[$i] = 1 / (1 + exp(-$sum));
+                $hiddenOutputs[$i] = $this->activate($sum);
             }
 
             $outputs = [];
@@ -113,7 +126,7 @@
                 for ($j = 0; $j < $this->numHidden; $j++) {
                     $sum += $hiddenOutputs[$j] * $this->outputWeights[$j][$i];
                 }
-                $outputs[$i] = 1 / (1 + exp(-$sum));
+                $outputs[$i] = $this->activate($sum);
             }
 
             return $outputs;
@@ -136,7 +149,7 @@
                 for ($j = 0; $j < $this->numInputs; $j++) {
                     $sum += $inputs[$j] * $this->hiddenWeights[$j][$i];
                 }
-                $hiddenOutputs[$i] = 1 / (1 + exp(-$sum));
+                $hiddenOutputs[$i] = $this->activate($sum);
             }
 
             $outputs = [];
@@ -145,7 +158,7 @@
                 for ($j = 0; $j < $this->numHidden; $j++) {
                     $sum += $hiddenOutputs[$j] * $this->outputWeights[$j][$i];
                 }
-                $outputs[$i] = 1 / (1 + exp(-$sum));
+                $outputs[$i] = $this->activate($sum);
             }
 
             // Расчет ошибок
